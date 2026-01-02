@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+ HEAD
 # auth-using-NodeJs
 
 Here is the **merged README + auth flow diagram** (clean & concise):
@@ -124,4 +124,3 @@ Client
 
 =======
 # Secure-Authentication-Service-using-JWT-bcrypt
->>>>>>> 5ae0d513eb056add5d1b56c689580ad2f7a2961f
