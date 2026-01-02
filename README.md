@@ -1,10 +1,3 @@
- HEAD
-# auth-using-NodeJs
-
-Here is the **merged README + auth flow diagram** (clean & concise):
-
----
-
 # auth-using-NodeJs
 
 This project demonstrates **JWT-based authentication** using **two servers**:
@@ -110,7 +103,7 @@ Auth Server (/token)
 Client
 ```
 
----
+
 
 ## Tech Stack
 
@@ -122,5 +115,4 @@ Client
 ---
 
 
-=======
 # Secure-Authentication-Service-using-JWT-bcrypt
