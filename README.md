@@ -141,6 +141,7 @@ Auth Server (/token)
 * bcrypt
 * dotenv
 
+
 ---
 
 ## Recommended Architecture (Production)
@@ -159,6 +160,21 @@ Resource Server
   - Verify JWT
   - Protected routes only
 ```
+Here is a **crisp, clean, copy-paste ready** section for your README:
+
+---
+
+## Rate Limiting
+
+To protect the `/login` endpoint from **brute-force attacks**, a rate limiter is implemented using `express-rate-limit`.
+
+* Limits login attempts to **5 requests per IP** within **15 minutes**
+* Returns **HTTP 429 (Too Many Requests)** when the limit is exceeded
+* Uses **standard RateLimit headers**
+* Helps prevent credential-stuffing and abuse
+
+> In production, a **Redis-backed store** should be used instead of in-memory rate limiting as it provides centralized access for count.
+
 
 > Resource Server **never accesses passwords**. All authentication is done via **JWT**.
 
