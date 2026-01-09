@@ -6,10 +6,23 @@ const app = express()
 const jwt = require('jsonwebtoken')
 const users = require('./user')
 const bcrypt = require('bcrypt')
-const cors =require('cors')
+const cors = require('cors')
 
+const rateLimit = require('express-rate-limit')
+
+const loginLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 5,
+    message: {
+        error: "Too Many Requests.Try again after 15 minutes"
+    },
+    standardHeaders: true,   // Return rate limit info in headers
+    legacyHeaders: false
+})
 app.use(cors())
 app.use(express.json())
+
+
 
 app.get('/posts', authToken, (req, res) => {
     res.send('<h1>Welcome</h1>')
@@ -17,21 +30,21 @@ app.get('/posts', authToken, (req, res) => {
 app.get('/users', (req, res) => {
     res.json(users)
 })
-app.post('/login', async (req, res) => {
+app.post('/login', loginLimiter,async (req, res) => {
 
     try {
-        const {username,password} = req.body;
+        const { username, password } = req.body;
         const user = users.find(user => user.name === username)
-        if(!user){
-            return res.status(401).json({Error:"Invalid Credentials"})
+        if (!user) {
+            return res.status(401).json({ Error: "Invalid Credentials" })
         }
-        const isMatch=await bcrypt.compare(password, user.password)
+        const isMatch = await bcrypt.compare(password, user.password)
         if (!isMatch) {
             return res.json({ Error: "Invalid Credentials" })
         }
         res.json("Login Successful")
     } catch {
-       return res.status(500).send()
+        return res.status(500).send()
     }
 
 })
