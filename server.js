@@ -6,6 +6,9 @@ const app = express()
 const jwt = require('jsonwebtoken')
 const users = require('./user')
 const bcrypt = require('bcrypt')
+const cors =require('cors')
+
+app.use(cors())
 app.use(express.json())
 
 app.get('/posts', authToken, (req, res) => {

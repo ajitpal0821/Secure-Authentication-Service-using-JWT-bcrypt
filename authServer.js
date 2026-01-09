@@ -8,12 +8,16 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const users = require('./user')
 
+const cors=require('cors')
+
+app.use(cors())
 app.use(express.json())
 let refresh_tokens = []
 
 app.delete('/logout', (req, res) => {
+    console.log('delete')
     const token = refresh_tokens.filter(token => token !== req.body.refresh_token)
-    res.sendStatus(204)
+    res.status(200).json({ message: "Logout Successfully" });
 })
 
 app.post('/token', (req, res) => {
@@ -33,7 +37,7 @@ app.post('/token', (req, res) => {
         res.json({ access_token: access_token })
     })
 })
-app.post('/login', async (req, res) => {
+app.post('/signup', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password
     try {
