@@ -2,7 +2,9 @@
 
 JWT-based authentication system built with **Node.js**, **Express**, **JWT**, and **bcrypt**, demonstrating a **two-server architecture**.
 
----
+![Uploading diagram.png…]()
+
+
 
 ## Project Overview
 
